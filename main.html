@@ -47,14 +47,12 @@
                 <img src="assets/send1.png" alt="" class="">
                 <p>Cash Out</p>
             </div>
-            <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
-                <img src="assets/transaction1.png" alt="" class="">
-                <p>Transactions</p>
-            </div>
+
             <div class="border-2 border-blue-600 p-3 flex flex-col items-center justify-center rounded-xl">
                 <img src="assets/money1.png"  alt="" class="">
                 <p>Transfer Money</p>
             </div>
+            
             <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
                 <img src="assets/purse1.png" alt="" class="">
                 <p>Pay Bill</p>
@@ -62,7 +60,12 @@
             <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
                 <img src="assets/bonus1.png" alt="" class="">
                 <p>Get Bonus</p>
-            </div>            
+            </div>   
+            
+            <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
+                <img src="assets/transaction1.png" alt="" class="">
+                <p>Transactions</p>
+            </div>
         </div>
 
         <!-- Feature Details -->
@@ -70,10 +73,10 @@
 
             <!-- Add Money Form -->
              <div class="bg-white p-2 rounded-xl">
-                <h1 class="text-2xl font-bold border-b-2 border-gray-200  pb-3 text-center">Add Money</h1>
+                <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Add Money</h1>
 
                 <form class="flex flex-col gap-3 p-3">
-                    <label class="text-lg font-semibold">Select a Bank</label>
+                    <label class=" font-semibold">Select a Bank</label>
                     <select class="border-2 border-gray-300 p-2 rounded-full bg-gray-200">
                         <option value="">Select Bank</option>
                         <option value="City Bank">City Bank</option>
@@ -83,18 +86,116 @@
                         <option value="Dutch Bangla Bank">Dutch Bangla Bank</option>
                     </select>
 
-                    <label class="text-lg font-semibold">Bank Account Number</label>
+                    <label class="font-semibold">Bank Account Number</label>
                     <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Bank Account Number">
 
-                    <label class="text-lg font-semibold">Amount to Add</label>
+                    <label class="font-semibold">Amount to Add</label>
                     <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount">
 
-                    <label class="text-lg font-semibold">PIN Number</label>
+                    <label class="font-semibold">PIN Number</label>
                     <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number">
 
                     <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-4">Add Money</button>
                 </form>
              </div>
+
+             <!--Cash Out Form-->
+             <div class="bg-white p-2 rounded-xl">
+                 <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Cash Out</h1>
+
+                 <form class="flex flex-col gap-3 p-3">
+                    <label class="font-semibold ">Agent Number</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Bank Account Number">
+
+                    <label class="font-semibold">Amount</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount">
+
+                    <label class="font-semibold">PIN Number</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number">
+
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-4">Withdraw Money</button>
+                </form>
+             </div>
+
+              <!--Transfer Money Form-->
+             <div class="bg-white p-2 rounded-xl">
+                 <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Transfer Money</h1>
+
+                 <form class="flex flex-col gap-3 p-3">
+                    <label class="font-semibold ">User Account Number</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter User Account Number">
+
+                    <label class="font-semibold">Amount</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount">
+
+                    <label class=" font-semibold">PIN Number</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number">
+
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-4">Transfer Money</button>
+                </form>
+             </div>
+
+               <!--Get Bonus Form-->
+             <div class="bg-white p-2 rounded-xl">
+                 <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Get Bonus</h1>
+
+                 <form class="flex flex-col gap-3 p-3">
+                    <label class=" font-semibold">Enter Bonus Coupon</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Coupon Code">
+
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-4">Get Bonus</button>
+                </form>
+             </div>
+
+              <!--Pay Bill Form-->
+             <div class="bg-white p-2 rounded-xl">
+                 <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Pay Bill</h1>
+                 
+                 <form class="flex flex-col gap-3 p-3">
+                    <label class=" font-semibold">Select to Pay</label>
+                    <select class="border-2 border-gray-300 p-2 rounded-full bg-gray-200">
+                        <option value="Water" default >Water</option>
+                        <option value="Electricity">Electricity</option>
+                        <option value="Gas">Gas</option>
+                        <option value="Internet">Internet</option>
+                    </select>
+
+                    <label class="font-semibold">Bill Account Number</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Bill Account Number">
+
+                    <label class="font-semibold">Amount to Pay</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount">
+
+                    <label class="font-semibold">PIN Number</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number">
+
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-4">Pay Now</button>
+                </form>
+                 
+             </div>
+
+             <!-- Transaction History -->
+              <div class="bg-white p-2 rounded-xl">
+                 <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Transaction History</h1>
+                 
+                 <div class="p-3">
+
+                    <p class="font-semibold text-lg mb-2">No transactions yet.</p>
+
+                    <!-- Transaction List Container -->
+                    <div>
+                        <!-- Example Transaction Item -->
+                        <div class="border-2 border-gray-300 p-3 rounded-lg mb-2">
+                            <p class="font-semibold">Transaction ID: 123456</p>
+                            <p>Type: Add Money</p>
+                            <p>Amount: ₹500.00</p>
+                            <p>Date: 2024-06-01</p>
+                        </div>
+                        <!-- More transaction items can be added here -->  
+                    </div>
+                 </div>
+
+              </div>
         </div>         
         
     </main>
