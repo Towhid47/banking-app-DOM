@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi Pay</title>
+    <link rel="stylesheet" href="style.css">
+
+     <!-- Tailwind CSS Cdn link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-[512px] mx-auto h-screen bg-blue-50">
+     
+        <!-- Banner Logo  -->
+    <div class="w-full p-1 bg-black flex justify-center items-center gap-1 mb-4">
+        <img src="assets/digipay.png" class="w-20"> <h1 class="text-white text-2xl font-bold">Digi <span class="text-blue-300">Pay</span></h1>
+    </div>
+
+    <!-- Main Section  -->
+     <main class="h-screen">
+
+        <!-- Total Balance & Login/Logout Toggle section -->
+        <div class="p-6 flex justify-between items-center">
+            <!-- Total Balance -->
+            <div class="flex items-center">
+                <img src="assets/Group.png" alt="" class="block">
+                <div>
+                    <p class="text-3xl font-bold text-green-500">₹ 0.00</p>
+                    <h1 class="text-2xl font-bold">Total Balance</h1>
+                </div>
+            </div>
+            <!-- Login/Logout Toggle -->
+             <div class="">
+                <button class="bg-gray-300 hover:bg-gray-400 text-black  py-2 px-4 rounded"><img src="assets/logout.png" alt="Logout" class="inline">Log Out</button>
+             </div>
+        </div>
+        <hr>
+
+        <!-- Features Section -->
+        <div class="p-8  grid grid-cols-3 gap-2">
+
+            <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
+                <img src="assets/wallet1.png" alt="" class="">
+                <p>Add Money</p>
+            </div>
+            <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
+                <img src="assets/send1.png" alt="" class="">
+                <p>Cash Out</p>
+            </div>
+            <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
+                <img src="assets/transaction1.png" alt="" class="">
+                <p>Transactions</p>
+            </div>
+            <div class="border-2 border-blue-600 p-3 flex flex-col items-center justify-center rounded-xl">
+                <img src="assets/money1.png"  alt="" class="">
+                <p>Transfer Money</p>
+            </div>
+            <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
+                <img src="assets/purse1.png" alt="" class="">
+                <p>Pay Bill</p>
+            </div>
+            <div class="border-2 border-blue-600 p-4 flex flex-col items-center justify-center rounded-xl">
+                <img src="assets/bonus1.png" alt="" class="">
+                <p>Get Bonus</p>
+            </div>            
+        </div>
+        
+    </main>
+
+    
+
+    
+</body>
+</html>
