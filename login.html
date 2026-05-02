@@ -16,17 +16,16 @@
             <!-- Login Banner -->
              <div class="w-3/5 h-[140px] bg-[url('assets/bg.png')] bg-cover">
                  <img src="assets/Group.png" alt="logo" class="w-20 h-20 mx-auto mt-4">
-
              </div>
 
              <!-- Login Form  -->
               <div class="border-none w-4/5 bg-slate-50 p-8 rounded-2xl">
-                    <form class="">
+                    <form class="" id="login-form">
                         <label class="text-2xl">Mobile Number</label>
-                        <input type="text" class="border-2 border-gray-400 w-full h-10 rounded-md mt-2 mb-4 px-2" placeholder="Enter your number">
+                        <input type="text" id="mobile-number" class="border-2 border-gray-400 w-full h-10 rounded-md mt-2 mb-4 px-2" placeholder="Enter your number">
 
                         <label class="text-2xl">PIN</label>
-                        <input type="password" class="border-2 border-gray-400 w-full h-10 rounded-md mt-2 mb-4 px-2" placeholder="Enter 4 digit pin">
+                        <input type="password" id="pin" class="border-2 border-gray-400 w-full h-10 rounded-md mt-2 mb-4 px-2" placeholder="Enter 4 digit pin">
 
                         <button class="w-full h-10 bg-blue-500 text-white rounded-md mt-4"  type="submit">Login</button>
                     </form>
@@ -34,8 +33,7 @@
 
      </div>
 
-   
-
-    
+     <script src="index.js"></script>
+     <script src="login.js"></script>
 </body>
 </html>
