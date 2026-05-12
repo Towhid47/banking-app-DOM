@@ -19,13 +19,15 @@
     <!-- Main Section  -->
      <main class="">
 
+        <h2 id="user-name" class="text-2xl font-semibold mb-8"></h2> <hr>
+
         <!-- Total Balance & Login/Logout Toggle section -->
         <div class="p-6 flex justify-between items-center">
             <!-- Total Balance -->
             <div class="flex items-center">
                 <img src="assets/Group.png" alt="" class="block">
                 <div>
-                    <p class="text-3xl font-bold text-green-500">₹ 0.00</p>
+                    <p class="text-3xl font-bold text-green-500">$<span id="balance"></span></p>
                     <h1 class="text-2xl font-bold">Total Balance</h1>
                 </div>
             </div>
@@ -200,8 +202,6 @@
         
     </main>
 
-    <script src="index.js"></script>
-    <script type="module" src="login.js"></script>
-
+    <script type="module" src="index.js"></script>
 </body>
 </html>

@@ -11,14 +11,23 @@ loginForm.addEventListener("submit", function(event){
      //get user data according to input
      let userData = usersData.find(user => user.mobileNumber === mobileNumberInput && user.pin === pinNumberInput);
 
-    // Navigate to main page if user data is found, otherwise show an error message 
         if(userData){
-            window.location.href = "/main.html";
+            // Store logged-in user data in local storage for later use in main page     
+               localStorage.setItem('userData', JSON.stringify(userData));
+               
+            // Navigate to main page if user data is found, otherwise show an error message    
+            window.location.href = "/main.html";            
         }
         else{
             alert("Invalid mobile number or PIN. Please try again.");
+            document.querySelector('#mobile-number').value = '';
+            document.querySelector('#pin').value = '';
         }
+
+    
+
 });
+
 
 
 
