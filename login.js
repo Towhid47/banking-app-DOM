@@ -23,12 +23,6 @@ loginForm.addEventListener("submit", function(event){
             document.querySelector('#mobile-number').value = '';
             document.querySelector('#pin').value = '';
         }
-
-    
-
 });
-
-
-
 
 

@@ -24,3 +24,8 @@ logoutButton.addEventListener('click', function(){
     // // Redirect to login page
     window.location.href = "/login.html";
 });
+
+//if there is no user data in local storage, redirect to login page
+if(!userData){
+    window.location.href = "/login.html";
+}  
