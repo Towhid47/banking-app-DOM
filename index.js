@@ -12,3 +12,15 @@ let balanceElement = document.querySelector('#balance');
 if(userData?.balance){
     balanceElement.textContent = userData.balance.toFixed(2);
 }
+
+
+// Handle logout
+const logoutButton = document.querySelector('#logout-btn');
+
+logoutButton.addEventListener('click', function(){
+    // // Clear user data from local storage
+    localStorage.removeItem('userData');
+
+    // // Redirect to login page
+    window.location.href = "/login.html";
+});
