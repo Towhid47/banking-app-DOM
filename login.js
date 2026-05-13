@@ -26,9 +26,13 @@ loginForm.addEventListener("submit", function(event){
 });
 
 
-//if userData on local storage exist, then user can't access login page  
+//if userData on local storage exist, then user can't access login page  ...
+// To apply this implementation: 
+// step 1 : placed <script src="login.js"></script> to the <head> of login.html //By placing it here, the browser will redirect the user before the login.. even if it rendered on the screen.
+// step 2 : window.location.replace() ... it Overwrites the current page in the session history. This effectively "forgets" the login page existed, so clicking "Back" from main.html won't bring them back to the login screen.   
+
 const isAuthenticated = localStorage.getItem('userData');
 
 if(isAuthenticated){
-    window.location.replace('main.html');
+    window.location.replace('main.html');     
 }
