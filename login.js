@@ -26,3 +26,9 @@ loginForm.addEventListener("submit", function(event){
 });
 
 
+//if userData on local storage exist, then user can't access login page  
+const isAuthenticated = localStorage.getItem('userData');
+
+if(isAuthenticated){
+    window.location.replace('main.html');
+}
