@@ -29,3 +29,33 @@ logoutButton.addEventListener('click', function(){
 if(!userData){
     window.location.href = "/login.html";
 }
+
+
+
+
+// By default, hide all feature details on the main page
+const allFeatureDetails = document.querySelectorAll('.feature-details');
+for(let featureDetail of allFeatureDetails){
+    featureDetail.classList.add("hidden");  
+}
+
+
+// toggle feature details when a feature option is clicked
+
+const featuresParent = document.querySelector('#features-parent');
+
+featuresParent.addEventListener('click', function(event){    //event delegation method used here to handle click events on feature options
+
+    for(let featureDetail of allFeatureDetails){
+        if(featureDetail.children[0].innerText === event.target.children[1].innerText){ // check if the clicked feature option's text matches the feature detail's title 
+            featureDetail.classList.remove("hidden"); 
+
+            
+            const featureDetailsContainer = document.querySelector('#feature-details-container');
+            featureDetailsContainer.classList.remove("hidden");  
+        }
+        else{
+            featureDetail.classList.add("hidden");
+        }
+    } 
+});     

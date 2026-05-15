@@ -39,7 +39,7 @@
         <hr>
 
         <!-- Features Section -->
-        <div class="p-8  grid grid-cols-3 gap-2">
+        <div class="p-8  grid grid-cols-3 gap-2" id="features-parent">
 
             <div class="border-2 border-blue-600 hover:bg-blue-200 p-4 flex flex-col items-center justify-center rounded-xl">
                 <img src="assets/wallet1.png" alt="" class="">
@@ -71,11 +71,11 @@
         </div>
 
         <!-- Feature Details -->
-        <div class="p-8 bg-blue-100 rounded-2xl">
+        <div class="p-8 bg-blue-100 rounded-2xl hidden" id="feature-details-container">
 
             <!-- Add Money Form -->
-             <div class="bg-white p-2 rounded-xl">
-                <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Add Money</h1>
+             <div class="bg-white p-2 rounded-xl feature-details" >
+                <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center ">Add Money</h1>
 
                 <form class="flex flex-col gap-3 p-3">
                     <label class=" font-semibold">Select a Bank</label>
@@ -102,7 +102,7 @@
              </div>
 
              <!--Cash Out Form-->
-             <div class="bg-white p-2 rounded-xl">
+             <div class="bg-white p-2 rounded-xl feature-details">
                  <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Cash Out</h1>
 
                  <form class="flex flex-col gap-3 p-3">
@@ -120,7 +120,7 @@
              </div>
 
               <!--Transfer Money Form-->
-             <div class="bg-white p-2 rounded-xl">
+             <div class="bg-white p-2 rounded-xl feature-details">
                  <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Transfer Money</h1>
 
                  <form class="flex flex-col gap-3 p-3">
@@ -138,7 +138,7 @@
              </div>
 
                <!--Get Bonus Form-->
-             <div class="bg-white p-2 rounded-xl">
+             <div class="bg-white p-2 rounded-xl feature-details">
                  <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Get Bonus</h1>
 
                  <form class="flex flex-col gap-3 p-3">
@@ -150,7 +150,7 @@
              </div>
 
               <!--Pay Bill Form-->
-             <div class="bg-white p-2 rounded-xl">
+             <div class="bg-white p-2 rounded-xl feature-details">
                  <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Pay Bill</h1>
                  
                  <form class="flex flex-col gap-3 p-3">
@@ -177,8 +177,8 @@
              </div>
 
              <!-- Transaction History -->
-              <div class="p-3">
-                 <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Transaction History</h1>
+              <div class="p-3 bg-white rounded-xl feature-details">
+                 <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Transactions</h1>
                  
                  <div class="p-3">
 
