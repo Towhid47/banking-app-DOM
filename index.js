@@ -114,6 +114,20 @@ addMoneyForm.addEventListener('submit', function(event){
     event.target.accountNumber.value = '';
     event.target.amount.value = '';
     event.target.pin.value = '';
-    console.log(userData);
+    
+    // Time of successful transaction
+    const transactionTime = new Date().toLocaleString(); // get current date and time in a readable format
+
+   
+    // Gather all the details of the transaction to display in the transaction history section
+    const transactionDetails = {
+        type: 'Add Money',
+        amount: amountToAdd.toFixed(2),
+        bank: selectedBank,
+        accountNumber: accountNumber,
+        time: transactionTime
+    };
+
+    console.log(transactionDetails); // log transaction details to the console for debugging purposes
     
 }); 
