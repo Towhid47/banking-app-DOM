@@ -7,6 +7,7 @@ let userNameElement = document.querySelector('#user-name');
 if(userData?.username){
     userNameElement.textContent = `Welcome, ${userData.username}!`;
 }
+
 // Display balance 
 let balanceElement = document.querySelector('#balance');
 if(userData?.balance){
@@ -16,7 +17,6 @@ if(userData?.balance){
 
 // Handle logout
 const logoutButton = document.querySelector('#logout-btn');
-
 logoutButton.addEventListener('click', function(){
     // // Clear user data from local storage
     localStorage.removeItem('userData');
@@ -31,8 +31,6 @@ if(!userData){
 }
 
 
-
-
 // By default, hide all feature details on the main page
 const allFeatureDetails = document.querySelectorAll('.feature-details');
 for(let featureDetail of allFeatureDetails){
@@ -43,14 +41,12 @@ for(let featureDetail of allFeatureDetails){
 // toggle feature details when a feature option is clicked
 
 const featuresParent = document.querySelector('#features-parent');
-
 featuresParent.addEventListener('click', function(event){    //event delegation method used here to handle click events on feature options
 
     for(let featureDetail of allFeatureDetails){
         if(featureDetail.children[0].innerText === event.target.children[1].innerText){ // check if the clicked feature option's text matches the feature detail's title 
             featureDetail.classList.remove("hidden"); 
-
-            
+      
             const featureDetailsContainer = document.querySelector('#feature-details-container');
             featureDetailsContainer.classList.remove("hidden");  
         }
@@ -59,3 +55,55 @@ featuresParent.addEventListener('click', function(event){    //event delegation 
         }
     } 
 });     
+
+
+// Handle add money form submission 
+const addMoneyForm = document.querySelector('#add-money-form');
+
+addMoneyForm.addEventListener('submit', function(event){
+    event.preventDefault(); // prevent form from submitting and refreshing the page
+
+    const selectedBank = event.target.bank.value; // get selected bank value
+    const accountNumber = event.target.accountNumber.value; // get account number value
+    const amountToAdd = parseFloat(event.target.amount.value); // get amount to add value and convert it to a number
+    const pin = event.target.pin.value; // get pin value
+
+   // validate account number 
+        // regex to check if account number contains any letters or special characters, it should only contain numbers 
+        const regex = /^(?=.*[A-Za-z\W])[A-Za-z0-9\W]+$/;
+
+        if(regex.test(accountNumber)){
+          alert("Account number must contain only numbers");
+          return;
+       }
+
+       if(accountNumber.length < 10 || accountNumber.length > 20){
+        alert("Account number must be between 10 and 20 digits");  
+        return; 
+      }
+    
+   // validate amount to add
+    if(amountToAdd <= 0){
+        alert("Amount to add must be greater than 0");
+        return; 
+    };
+       // regex to check if account number contains any letters or special characters, it should only contain numbers 
+        if(regex.test(event.target.amount.value)){
+            alert("Amount to add must contain only numbers");
+            return;
+        }
+    
+    // validate pin
+    if(pin !== userData.pin){
+       alert("Invalid PIN");
+       return; 
+    }
+
+    // Add Money to user's balance
+    userData.balance += amountToAdd; 
+    document.querySelector('#balance').textContent = userData.balance.toFixed(2); //display updated user balance
+    localStorage.setItem('userData', JSON.stringify(userData)); //update user data in local storage with new balance  
+
+    console.log(userData);
+    
+}); 
