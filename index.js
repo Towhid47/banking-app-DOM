@@ -74,28 +74,33 @@ addMoneyForm.addEventListener('submit', function(event){
 
         if(regex.test(accountNumber)){
           alert("Account number must contain only numbers");
+            event.target.accountNumber.value = '';
           return;
        }
 
        if(accountNumber.length < 10 || accountNumber.length > 20){
         alert("Account number must be between 10 and 20 digits");  
+        event.target.accountNumber.value = '';
         return; 
       }
     
    // validate amount to add
     if(amountToAdd <= 0){
         alert("Amount to add must be greater than 0");
+        event.target.amount.value = '';
         return; 
     };
        // regex to check if account number contains any letters or special characters, it should only contain numbers 
         if(regex.test(event.target.amount.value)){
             alert("Amount to add must contain only numbers");
+            event.target.amount.value = '';
             return;
         }
     
     // validate pin
     if(pin !== userData.pin){
        alert("Invalid PIN");
+       event.target.pin.value = '';
        return; 
     }
 
@@ -103,7 +108,12 @@ addMoneyForm.addEventListener('submit', function(event){
     userData.balance += amountToAdd; 
     document.querySelector('#balance').textContent = userData.balance.toFixed(2); //display updated user balance
     localStorage.setItem('userData', JSON.stringify(userData)); //update user data in local storage with new balance  
-
+    
+    // Clear form inputs after successful submission
+    event.target.bank.value = '';
+    event.target.accountNumber.value = '';
+    event.target.amount.value = '';
+    event.target.pin.value = '';
     console.log(userData);
     
 }); 
