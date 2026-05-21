@@ -57,6 +57,15 @@ featuresParent.addEventListener('click', function(event){    //event delegation 
 });     
 
 
+//Function to store transaction details in Local Storage
+function storeTransactionDetails(transactionDetails){
+    let transactionHistory = JSON.parse(localStorage.getItem('transactionHistory')) || []; // get existing transaction history from local storage or initialize an empty array if it doesn't exist
+    transactionHistory.push(transactionDetails); // add new transaction details to the transaction history array
+    localStorage.setItem('transactionHistory', JSON.stringify(transactionHistory)); // update transaction history in local storage with new transaction details 
+}
+
+
+
 // Handle add money form submission 
 const addMoneyForm = document.querySelector('#add-money-form');
 
@@ -119,7 +128,7 @@ addMoneyForm.addEventListener('submit', function(event){
     const transactionTime = new Date().toLocaleString(); // get current date and time in a readable format
 
    
-    // Gather all the details of the transaction to display in the transaction history section
+    // Gather all the details of the transaction to Store in Local Storage
     const transactionDetails = {
         type: 'Add Money',
         amount: amountToAdd.toFixed(2),
@@ -128,6 +137,13 @@ addMoneyForm.addEventListener('submit', function(event){
         time: transactionTime
     };
 
-    console.log(transactionDetails); // log transaction details to the console for debugging purposes
+    // Store transaction details in Local Storage 
+    storeTransactionDetails(transactionDetails); 
     
 }); 
+
+
+// for testing purposes, to check if transaction details are being stored in local storage correctly
+const transaction =  JSON.parse(localStorage.getItem('transactionHistory')); 
+
+console.log(transaction);
