@@ -46,6 +46,7 @@ featuresParent.addEventListener('click', function(event){    //event delegation 
     for(let featureDetail of allFeatureDetails){
         if(featureDetail.children[0].innerText === event.target.children[1].innerText){ // check if the clicked feature option's text matches the feature detail's title 
             featureDetail.classList.remove("hidden"); 
+           
       
             const featureDetailsContainer = document.querySelector('#feature-details-container');
             featureDetailsContainer.classList.remove("hidden");  
@@ -143,7 +144,41 @@ addMoneyForm.addEventListener('submit', function(event){
 }); 
 
 
-// for testing purposes, to check if transaction details are being stored in local storage correctly
-const transaction =  JSON.parse(localStorage.getItem('transactionHistory')); 
+// Display transaction history on the main page
+const transactionHistoryContainer = document.querySelector('#transaction-history-container');
 
-console.log(transaction);
+    // Get transaction history from local storage
+    const transactionHistory =  JSON.parse(localStorage.getItem('transactionHistory')); 
+
+    // If there are transactions in the transaction history, display them on the main page
+    if(transactionHistory && transactionHistory.length > 0){
+        for(let transaction of transactionHistory){
+            const transactionItem = document.createElement('div');
+            transactionItem.classList.add('bg-white', 'border-2', 'border-gray-300', 'p-3', 'rounded-lg', 'mb-2');
+            const transactionIdElement = document.createElement('p');
+            transactionIdElement.classList.add('font-semibold');
+            transactionIdElement.textContent = `Transaction ID: ${Math.floor(Math.random() * 1000000)}`;
+
+            const transactionTypeElement = document.createElement('p');
+            transactionTypeElement.textContent = `Type: ${transaction.type}`;
+
+            const transactionAmountElement = document.createElement('p');
+            transactionAmountElement.textContent = `Amount: $${transaction.amount}`;
+
+            const transactionBankElement = document.createElement('p');
+            transactionBankElement.textContent = `Bank: ${transaction.bank}`;
+
+            const transactionAccountElement = document.createElement('p');
+            transactionAccountElement.textContent = `Account Number: ${transaction.accountNumber}`;
+
+            const transactionTimeElement = document.createElement('p');
+            transactionTimeElement.textContent = `Time: ${transaction.time}`;
+
+            transactionItem.append(transactionIdElement, transactionTypeElement, transactionAmountElement, transactionBankElement, transactionAccountElement, transactionTimeElement);
+            transactionHistoryContainer.appendChild(transactionItem);
+        }
+    }
+    else{
+        const noTransactionsMessageElement = document.querySelector('#no-transactions-message');
+        noTransactionsMessageElement.textContent = "No transactions yet.";
+    }
