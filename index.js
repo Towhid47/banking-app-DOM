@@ -143,6 +143,85 @@ addMoneyForm.addEventListener('submit', function(event){
     
 }); 
 
+// Handle cash out form submission
+const cashOutForm = document.querySelector('#cash-out-form');
+
+cashOutForm.addEventListener('submit', function(event){
+    event.preventDefault(); // prevent form from submitting and refreshing the page
+    
+    let agentNumber = event.target.agentNumber.value; // get agent number value
+    let amountToWithdraw = parseFloat(event.target.amount.value); // get amount to withdraw value and convert it to a number
+    let pin = event.target.pin.value; // get pin value
+
+    // validate agent number
+        // regex to check if account number contains any letters or special characters, it should only contain numbers 
+        const regex = /^(?=.*[A-Za-z\W])[A-Za-z0-9\W]+$/;
+
+        if(regex.test(agentNumber)){
+          alert("Agent number must contain only numbers");
+            event.target.agentNumber.value = '';
+          return;
+       }
+
+       if(agentNumber.length < 10 || agentNumber.length > 20){
+        alert("Agent number must be between 10 and 20 digits");  
+        event.target.agentNumber.value = '';
+        return; 
+      }
+
+    // validate amount to withdraw
+    if(amountToWithdraw <= 0){
+        alert("Amount to withdraw must be greater than 0");
+        event.target.amount.value = '';
+        return; 
+    };
+       // regex to check if account number contains any letters or special characters, it should only contain numbers 
+        if(regex.test(event.target.amount.value)){
+            alert("Amount to withdraw must contain only numbers");
+            event.target.amount.value = '';
+            return;
+        }
+    
+    // validate pin
+    if(pin !== userData.pin){
+       alert("Invalid PIN");
+       event.target.pin.value = '';
+       return; 
+    }
+    
+    // Check if user has sufficient balance to withdraw the requested amount
+    if(amountToWithdraw > userData.balance){
+        alert("Insufficient balance to withdraw the requested amount");
+        event.target.amount.value = '';
+        return; 
+    }
+
+    // Withdraw money from user's balance
+    userData.balance -= amountToWithdraw; 
+    document.querySelector('#balance').textContent = userData.balance.toFixed(2); //display updated user balance
+    localStorage.setItem('userData', JSON.stringify(userData)); //update user data in local storage with new balance 
+
+    // Clear form inputs after successful submission
+    event.target.agentNumber.value = '';
+    event.target.amount.value = '';
+    event.target.pin.value = '';
+
+    // Time of successful transaction
+    const transactionTime = new Date().toLocaleString(); // get current date and time in a readable format
+
+    // Gather all the details of the transaction to Store in Local Storage
+    const transactionDetails = {
+        type: 'Cash Out',
+        amount: amountToWithdraw.toFixed(2),
+        agentNumber: agentNumber,
+        time: transactionTime
+    };
+
+    // Store transaction details in Local Storage  
+    storeTransactionDetails(transactionDetails); 
+
+});
+
 
 // Display transaction history on the main page
 const transactionHistoryContainer = document.querySelector('#transaction-history-container');
@@ -165,16 +244,21 @@ const transactionHistoryContainer = document.querySelector('#transaction-history
             const transactionAmountElement = document.createElement('p');
             transactionAmountElement.textContent = `Amount: $${transaction.amount}`;
 
-            const transactionBankElement = document.createElement('p');
-            transactionBankElement.textContent = `Bank: ${transaction.bank}`;
+            if(transaction.type === "Add Money"){
+                 const transactionBankElement = document.createElement('p');
+                 transactionBankElement.textContent = `Bank: ${transaction.bank}`;
 
-            const transactionAccountElement = document.createElement('p');
-            transactionAccountElement.textContent = `Account Number: ${transaction.accountNumber}`;
+                 const transactionAccountElement = document.createElement('p');
+                 transactionAccountElement.textContent = `Account Number: ${transaction.accountNumber}`;
+
+                 transactionItem.append(transactionBankElement, transactionAccountElement);
+            }
+           
 
             const transactionTimeElement = document.createElement('p');
             transactionTimeElement.textContent = `Time: ${transaction.time}`;
 
-            transactionItem.append(transactionIdElement, transactionTypeElement, transactionAmountElement, transactionBankElement, transactionAccountElement, transactionTimeElement);
+            transactionItem.append(transactionIdElement, transactionTypeElement, transactionAmountElement, transactionTimeElement);
             transactionHistoryContainer.appendChild(transactionItem);
         }
     }

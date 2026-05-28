@@ -105,15 +105,15 @@
              <div class="bg-white p-2 rounded-xl feature-details">
                  <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Cash Out</h1>
 
-                 <form class="flex flex-col gap-3 p-3">
+                 <form class="flex flex-col gap-3 p-3" id="cash-out-form">
                     <label class="font-semibold ">Agent Number</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Bank Account Number">
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Agent Number" name="agentNumber" required> 
 
                     <label class="font-semibold">Amount</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount">
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount" name="amount" required>
 
                     <label class="font-semibold">PIN Number</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number">
+                    <input type="password" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number" name="pin" required>
 
                     <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-4">Withdraw Money</button>
                 </form>
