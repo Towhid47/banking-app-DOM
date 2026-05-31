@@ -223,6 +223,85 @@ cashOutForm.addEventListener('submit', function(event){
 });
 
 
+// Handle Transfer Money form submission
+const transferMoneyForm = document.querySelector('#transfer-money-form');
+
+transferMoneyForm.addEventListener('submit', function(event){
+    event.preventDefault(); // prevent form from submitting and refreshing the page
+
+    let recipientsAccountNumber = event.target.recipients_Account_Number.value; // get user account number value
+    let amountToTransfer = parseFloat(event.target.amount.value); // get amount to transfer value and convert it to a number
+    let pin = event.target.pin.value; // get pin value
+
+    // validate recipients account number
+        // regex to check if account number contains any letters or special characters, it should only contain numbers 
+        const regex = /^(?=.*[A-Za-z\W])[A-Za-z0-9\W]+$/;
+
+        if(regex.test(recipientsAccountNumber)){
+          alert("Recipients account number must contain only numbers");
+            event.target.recipients_Account_Number.value = '';
+          return;
+       }
+
+       if(recipientsAccountNumber.length < 10 || recipientsAccountNumber.length > 20){
+        alert("Recipients account number must be between 10 and 20 digits");  
+        event.target.recipients_Account_Number.value = '';
+        return; 
+      }
+
+    // validate amount to transfer
+    if(amountToTransfer <= 0){
+        alert("Amount to transfer must be greater than 0");
+        event.target.amount.value = '';
+        return; 
+    };
+       // regex to check if account number contains any letters or special characters, it should only contain numbers 
+        if(regex.test(event.target.amount.value)){
+            alert("Amount to transfer must contain only numbers");
+            event.target.amount.value = '';
+            return;
+        }
+    
+    // validate pin
+    if(pin !== userData.pin){
+       alert("Invalid PIN");
+       event.target.pin.value = '';
+       return; 
+    }
+
+     // Check if user has sufficient balance to transfer the requested amount
+    if(amountToTransfer > userData.balance){
+        alert("Insufficient balance to transfer the requested amount");
+        event.target.amount.value = '';
+        return; 
+    }
+
+    // Reduce money from user's balance
+    userData.balance -= amountToTransfer; 
+    document.querySelector('#balance').textContent = userData.balance.toFixed(2); //display updated user balance
+    localStorage.setItem('userData', JSON.stringify(userData)); //update user data in local storage with new balance 
+    
+    // Time of successful transaction
+    const transactionTime = new Date().toLocaleString(); // get current date and time in a readable format
+
+     // Clear form inputs after successful submission
+    event.target.recipients_Account_Number.value = '';
+    event.target.amount.value = '';
+    event.target.pin.value = '';
+
+    // Gather all the details of the transaction to Store in Local Storage
+    const transactionDetails = {
+        type: 'Transfer Money',
+        amount: amountToTransfer.toFixed(2),
+        recipientsAccountNumber:  recipientsAccountNumber,
+        time: transactionTime
+    };
+
+   // Store transaction details in Local Storage  
+    storeTransactionDetails(transactionDetails); 
+    
+});
+
 // Display transaction history on the main page
 const transactionHistoryContainer = document.querySelector('#transaction-history-container');
 
@@ -252,6 +331,20 @@ const transactionHistoryContainer = document.querySelector('#transaction-history
                  transactionAccountElement.textContent = `Account Number: ${transaction.accountNumber}`;
 
                  transactionItem.append(transactionBankElement, transactionAccountElement);
+            }
+
+            if(transaction.type === "Cash Out"){
+              const  agentNumberElement = document.createElement('p');
+              agentNumberElement.textContent = `Agent Number: ${transaction.agentNumber}`;
+
+              transactionItem.append(agentNumberElement); 
+            }
+
+            if(transaction.type === "Transfer Money"){
+                const recipientsAccountNumberElement = document.createElement('p'); 
+                recipientsAccountNumberElement.textContent = `Recipients Account Number: ${transaction.recipientsAccountNumber}`
+                
+                transactionItem.append(recipientsAccountNumberElement); 
             }
            
 

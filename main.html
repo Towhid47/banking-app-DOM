@@ -123,15 +123,15 @@
              <div class="bg-white p-2 rounded-xl feature-details">
                  <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Transfer Money</h1>
 
-                 <form class="flex flex-col gap-3 p-3">
-                    <label class="font-semibold ">User Account Number</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter User Account Number">
+                 <form class="flex flex-col gap-3 p-3" id="transfer-money-form">
+                    <label class="font-semibold ">Recipients Account Number</label>
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Recipients Account Number" name="recipients_Account_Number" required>
 
                     <label class="font-semibold">Amount</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount">
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount" name="amount" required>
 
                     <label class=" font-semibold">PIN Number</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number">
+                    <input type="password" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number" name="pin" required>
 
                     <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-4">Transfer Money</button>
                 </form>
