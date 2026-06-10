@@ -39,7 +39,6 @@ for(let featureDetail of allFeatureDetails){
 
 
 // toggle feature details when a feature option is clicked
-
 const featuresParent = document.querySelector('#features-parent');
 featuresParent.addEventListener('click', function(event){    //event delegation method used here to handle click events on feature options
 
@@ -301,6 +300,55 @@ transferMoneyForm.addEventListener('submit', function(event){
     storeTransactionDetails(transactionDetails); 
     
 });
+
+// Bonus Coupon Code Form Submission Section
+import {availableCoupons} from './couponsData.js'; 
+
+   // Keep track of applied coupons so that user cannot apply the same coupon multiple times
+     const usedCoupons = new Set();  // Set() data structure is an Object, used to store used coupons because it only allows unique values, so if user tries to apply the same coupon again, it will not be added to the set and we can check if a coupon has already been used by checking if it exists in the set
+     
+     //Submit form to get bonus coupon code
+     const getBonusCouponForm = document.querySelector('#bonus-form');
+
+     getBonusCouponForm.addEventListener('submit', function(event){
+       event.preventDefault();  
+       
+       // get coupon code input element
+       let enteredCode = event.target.coupon_code.value.replace(/\s+/g, '').toUpperCase(); // here, replace() method is used to remove All whitespace from the entered coupon code  
+       
+       //Validate entered coupon code
+            // Check if the entered coupon code is empty
+            if (enteredCode === "") {
+                    alert("Please enter a code.");
+                    return;
+                }
+            
+            // Check if the entered coupon code already in usedCoupons set, if it is, show an alert and return from the function to prevent applying the same coupon multiple times
+            if (usedCoupons.has(enteredCode)) {                //here, has() method of Set() is used , which checks the property of the set() and returns true if the specified element exists in the set, otherwise it returns false.
+                    alert("You have already used this coupon!");
+                    return;
+                }
+            
+            // Check if the entered coupon code matches with the availableCoupons object property, if it exists, apply the corresponding bonus to the user's balance    
+            if (availableCoupons.hasOwnProperty(enteredCode)) { 
+                //Get the bonus value from the availableCoupons object according to the entered coupon code
+                   const bonusValue = availableCoupons[enteredCode];
+
+                // Update the state
+                   userData.balance =  userData.balance + (userData.balance * bonusValue) ; // Update the user's balance by applying bonus percentage according to the entered coupon code
+                   usedCoupons.add(enteredCode); // Add the entered coupon code to the usedCoupons object as a property, so that user cannot apply the same coupon code again
+                
+                // Update the DOM 
+                  document.querySelector('#balance').textContent = userData.balance.toFixed(2); //display updated user balance    
+                  alert(`Coupon applied successfully! Your new balance is $${userData.balance.toFixed(2)}`);
+
+                // Clear the input field after successful submission  
+                event.target.coupon_code.value = '';
+          } 
+            else{  // If the entered coupon code does not match with availableCoupons object property, show an alert message to the user
+                    alert("Invalid coupon code. Please try again.");
+            }
+     })
 
 // Display transaction history on the main page
 const transactionHistoryContainer = document.querySelector('#transaction-history-container');
