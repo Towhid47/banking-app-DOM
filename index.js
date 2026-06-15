@@ -361,7 +361,7 @@ import {availableCoupons} from './couponsData.js';
                 // Store transaction details in Local Storage  
                    storeTransactionDetails(transactionDetails);    
           } 
-            
+
             else{  // If the entered coupon code does not match with availableCoupons object property, show an alert message to the user
                     alert("Invalid coupon code. Please try again.");
             }
@@ -378,45 +378,71 @@ const transactionHistoryContainer = document.querySelector('#transaction-history
         for(let transaction of transactionHistory){
             const transactionItem = document.createElement('div');
             transactionItem.classList.add('bg-white', 'border-2', 'border-gray-300', 'p-3', 'rounded-lg', 'mb-2');
+
             const transactionIdElement = document.createElement('p');
             transactionIdElement.classList.add('font-semibold');
             transactionIdElement.textContent = `Transaction ID: ${Math.floor(Math.random() * 1000000)}`;
-
-            const transactionTypeElement = document.createElement('p');
-            transactionTypeElement.textContent = `Type: ${transaction.type}`;
-
-            const transactionAmountElement = document.createElement('p');
-            transactionAmountElement.textContent = `Amount: $${transaction.amount}`;
 
             if(transaction.type === "Add Money"){
                  const transactionBankElement = document.createElement('p');
                  transactionBankElement.textContent = `Bank: ${transaction.bank}`;
 
+                 const transactionTypeElement = document.createElement('p');
+                 transactionTypeElement.textContent = `Type: ${transaction.type}`;
+
+                  const transactionAmountElement = document.createElement('p');
+                  transactionAmountElement.textContent = `Amount: $${transaction.amount}`;
+
                  const transactionAccountElement = document.createElement('p');
                  transactionAccountElement.textContent = `Account Number: ${transaction.accountNumber}`;
 
-                 transactionItem.append(transactionBankElement, transactionAccountElement);
+                 transactionItem.append(transactionIdElement, transactionTypeElement, transactionBankElement,  transactionAccountElement , transactionAmountElement);
             }
 
             if(transaction.type === "Cash Out"){
               const  agentNumberElement = document.createElement('p');
               agentNumberElement.textContent = `Agent Number: ${transaction.agentNumber}`;
 
-              transactionItem.append(agentNumberElement); 
+              const transactionTypeElement = document.createElement('p');
+              transactionTypeElement.textContent = `Type: ${transaction.type}`;
+
+               const transactionAmountElement = document.createElement('p');
+               transactionAmountElement.textContent = `Amount: $${transaction.amount}`;
+
+              transactionItem.append(transactionIdElement, transactionTypeElement, agentNumberElement,  transactionAmountElement);
             }
 
             if(transaction.type === "Transfer Money"){
                 const recipientsAccountNumberElement = document.createElement('p'); 
-                recipientsAccountNumberElement.textContent = `Recipients Account Number: ${transaction.recipientsAccountNumber}`
+                recipientsAccountNumberElement.textContent = `Recipients Account Number: ${transaction.recipientsAccountNumber}`;
+
+                const transactionTypeElement = document.createElement('p');
+                transactionTypeElement.textContent = `Type: ${transaction.type}`;
+
+                const transactionAmountElement = document.createElement('p');
+                transactionAmountElement.textContent = `Amount: $${transaction.amount}`;
                 
-                transactionItem.append(recipientsAccountNumberElement); 
+                transactionItem.append(transactionIdElement, transactionTypeElement, recipientsAccountNumberElement,  transactionAmountElement);
+            }
+
+            if(transaction.message === "Bonus Coupon Applied"){
+                const bonusMessageElement = document.createElement('p');
+                bonusMessageElement.textContent = transaction.message;
+
+                const bonusValueElement = document.createElement('p');
+                bonusValueElement.textContent = `Bonus: ${transaction.bonus}`;
+
+                const currentBalanceElement = document.createElement('p');
+                currentBalanceElement.textContent = `Current Balance: $${transaction.currentBalance}`;
+
+                transactionItem.append(transactionIdElement, bonusMessageElement, bonusValueElement, currentBalanceElement);
             }
            
 
             const transactionTimeElement = document.createElement('p');
             transactionTimeElement.textContent = `Time: ${transaction.time}`;
 
-            transactionItem.append(transactionIdElement, transactionTypeElement, transactionAmountElement, transactionTimeElement);
+            transactionItem.append(transactionTimeElement);
             transactionHistoryContainer.appendChild(transactionItem);
         }
     }
