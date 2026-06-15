@@ -347,7 +347,21 @@ import {availableCoupons} from './couponsData.js';
                 // Clear the input field after successful submission  
                 event.target.coupon_code.value = '';
 
+                 // Time of successful transaction
+                 const transactionTime = new Date().toLocaleString(); // get current date and time in a readable format
+
+                // Gather all the details of the transaction to Store in Local Storage
+                    const transactionDetails = {
+                        message: 'Bonus Coupon Applied',
+                        bonus: bonusValue * 100 + "%", // here, we are converting the bonus value to percentage format by multiplying it with 100 and adding a percentage sign at the end, so if the bonus value is 0.2, it will be displayed as "20%" in the transaction details.
+                        currentBalance: userData.balance.toFixed(2),
+                        time: transactionTime
+                    };
+
+                // Store transaction details in Local Storage  
+                   storeTransactionDetails(transactionDetails);    
           } 
+            
             else{  // If the entered coupon code does not match with availableCoupons object property, show an alert message to the user
                     alert("Invalid coupon code. Please try again.");
             }
