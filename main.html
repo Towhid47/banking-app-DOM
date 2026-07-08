@@ -153,9 +153,9 @@
              <div class="bg-white p-2 rounded-xl feature-details">
                  <h1 class="text-2xl font-bold border-b-2 border-gray-200 pb-3 text-center">Pay Bill</h1>
                  
-                 <form class="flex flex-col gap-3 p-3">
+                 <form class="flex flex-col gap-3 p-3" id="pay-bill-form">
                     <label class=" font-semibold">Select to Pay</label>
-                    <select class="border-2 border-gray-300 p-2 rounded-full bg-gray-200">
+                    <select class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" name="bill_type">
                         <option value="Water" default >Water</option>
                         <option value="Electricity">Electricity</option>
                         <option value="Gas">Gas</option>
@@ -163,13 +163,13 @@
                     </select>
 
                     <label class="font-semibold">Bill Account Number</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Bill Account Number">
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Bill Account Number" name="bill_account_number">
 
                     <label class="font-semibold">Amount to Pay</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount">
+                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter Amount" name="amount">
 
                     <label class="font-semibold">PIN Number</label>
-                    <input type="text" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number">
+                    <input type="password" class="border-2 border-gray-300 p-2 rounded-full bg-gray-200" placeholder="Enter PIN Number" name="pin">
 
                     <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full mt-4">Pay Now</button>
                 </form>

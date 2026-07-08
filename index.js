@@ -367,6 +367,92 @@ import {availableCoupons} from './couponsData.js';
             }
      })
 
+
+// Handle Pay Bill form submission 
+ const payBillForm = document.querySelector('#pay-bill-form');    
+
+ payBillForm.addEventListener("submit", function(event){
+    event.preventDefault(); // prevent form from submitting and refreshing the page
+
+    const selectedBillType = event.target.bill_type.value; // get selected bill type value
+    const billAccountNumber = event.target.bill_account_number.value; // get bill account number value
+    const amountToPay = parseFloat(event.target.amount.value); // get amount to pay value and convert it to a number
+    const pin = event.target.pin.value; // get pin value
+
+    // validate bill account number 
+        // regex to check if account number contains any letters or special characters, it should only contain numbers 
+        const regex = /^(?=.*[A-Za-z\W])[A-Za-z0-9\W]+$/;
+
+        if(regex.test(billAccountNumber)){
+          alert("Bill account number must contain only numbers");
+            event.target.bill_account_number.value = '';
+          return;
+       }
+
+       if(billAccountNumber.length < 10 || billAccountNumber.length > 20){
+        alert("Bill account number must be between 10 and 20 digits");  
+        event.target.bill_account_number.value = '';
+        return; 
+      }
+   
+    // validate amount to add
+    if(amountToPay <= 0){
+        alert("Amount to pay must be greater than 0");
+        event.target.amount.value = '';
+        return; 
+    };
+       // regex to check if account number contains any letters or special characters, it should only contain numbers 
+        if(regex.test(event.target.amount.value)){
+            alert("Amount to pay must contain only numbers");
+            event.target.amount.value = '';
+            return;
+        } 
+
+    // validate pin
+      if(pin !== userData.pin){
+         alert("Invalid PIN");
+         event.target.pin.value = '';
+         return; 
+      }    
+
+    // Check if user has sufficient balance to withdraw the requested amount
+      if(amountToPay > userData.balance){
+         alert("Insufficient balance to withdraw the requested amount");
+         event.target.amount.value = '';
+         return; 
+        }  
+
+    // Reduce money from user's balance
+    userData.balance -= amountToPay; 
+    document.querySelector('#balance').textContent = userData.balance.toFixed(2); //display updated user balance
+    localStorage.setItem('userData', JSON.stringify(userData)); //update user data in local storage with new balance 
+    
+
+    // Clear form inputs after successful submission
+    event.target.bill_type.value = '';
+    event.target.bill_account_number.value = '';
+    event.target.amount.value = '';
+    event.target.pin.value = '';
+
+    // Time of successful transaction
+    const transactionTime = new Date().toLocaleString(); // get current date and time in a readable format
+
+    // Gather all the details of the transaction to Store in Local Storage
+    const transactionDetails = {
+        type: 'Pay Bill',
+        amount: amountToPay.toFixed(2),
+        billType: selectedBillType,
+        billAccountNumber: billAccountNumber,
+        time: transactionTime
+    };
+
+    // Store transaction details in Local Storage  
+      storeTransactionDetails(transactionDetails);
+    
+
+
+ })
+
 // Display transaction history on the main page
 const transactionHistoryContainer = document.querySelector('#transaction-history-container');
 
