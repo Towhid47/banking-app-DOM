@@ -523,6 +523,24 @@ const transactionHistoryContainer = document.querySelector('#transaction-history
 
                 transactionItem.append(transactionIdElement, bonusMessageElement, bonusValueElement, currentBalanceElement);
             }
+
+            if(transaction.type === "Pay Bill"){
+                const billTypeElement = document.createElement("p");
+                billTypeElement.textContent = `Bill Type: ${transaction.billType}`;
+
+                const billAccountNumberElement = document.createElement("p");
+                billAccountNumberElement.textContent = `Bill Account Number: ${transaction.billAccountNumber}`;
+
+                const transactionTypeElement = document.createElement('p');
+                transactionTypeElement.textContent = `Type: ${transaction.type}`;
+
+                const transactionAmountElement = document.createElement('p');
+                transactionAmountElement.textContent = `Amount: $${transaction.amount}`;
+
+                transactionItem.append(transactionIdElement, transactionTypeElement,  billTypeElement, billAccountNumberElement, transactionAmountElement );
+
+
+            }
            
 
             const transactionTimeElement = document.createElement('p');
